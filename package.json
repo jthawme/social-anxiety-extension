@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "parcel src/twitter.js",
-    "build": "parcel build src/twitter.js"
+    "start": "parcel src/twitter.js src/instagram.js",
+    "build": "parcel build src/twitter.js src/instagram.js"
   },
   "dependencies": {
     "parcel": "^2.7.0",

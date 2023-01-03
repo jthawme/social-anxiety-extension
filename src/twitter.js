@@ -48,6 +48,7 @@ const runInlineChecker = (retry = 0) => {
       }
 
       addStyle(`
+      @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
     .social-anxiety-focus {
       opacity: 1;
       cursor: pointer;

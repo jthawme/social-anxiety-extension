@@ -8,9 +8,8 @@ import {
   Vector,
 } from "./utils";
 
-let THRESHOLD = 100;
-
 export const addOverlay = (onSubmit) => {
+  let THRESHOLD = 100;
   // const link = document.createElement("link");
   // link.rel = `stylesheet`;
   // link.href = `https://fonts.googleapis.com/css2?family=Silkscreen&display=swap`;
@@ -20,6 +19,7 @@ export const addOverlay = (onSubmit) => {
 
   addStyle(
     `
+
 .social-anxiety-overlay {
   position: fixed;
 
@@ -28,7 +28,7 @@ export const addOverlay = (onSubmit) => {
   bottom: 0;
   left: 0;
 
-  background-color: rgba(255,255,255,0.25);
+  background-color: rgba(0,0,255,0.25);
   backdrop-filter: blur(10px);
 
   z-index: 99999;
@@ -68,7 +68,7 @@ export const addOverlay = (onSubmit) => {
 }
 
 .social-anxiety-text {
-  font-family: sans-serif;
+  font-family: 'Silkscreen', sans-serif;
   font-weight: bold;
   font-size: 6vw;
   text-align: justify;
@@ -160,17 +160,20 @@ export const addOverlay = (onSubmit) => {
     // submitBtn.style.top = `${clamp(btnPosition.y, 0, dimensions.height)}px`;
   };
 
-  listenCb(el, "mousemove", tickUpdate(onMouseMove));
-  listenCb(
-    window,
-    "resize",
-    tickUpdate(() => {
-      dimensions.width = window.innerWidth;
-      dimensions.height = window.innerHeight;
-    })
-  );
+  const unlisten = [
+    listenCb(el, "mousemove", tickUpdate(onMouseMove)),
+    listenCb(
+      window,
+      "resize",
+      tickUpdate(() => {
+        dimensions.width = window.innerWidth;
+        dimensions.height = window.innerHeight;
+      })
+    ),
+  ];
 
   return () => {
+    unlisten && unlisten.forEach((cb) => cb());
     el.parentElement.removeChild(el);
   };
 };
